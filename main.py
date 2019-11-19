@@ -1,7 +1,7 @@
 apresent = """
 
 |\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/|
-|                     Bar do Gallao                              |
+|                     Bar do Gallão                              |
 |                                                                |
 |________________________________________________________________|
 |                Preço de um drink fraco:                        |
@@ -24,8 +24,8 @@ apresent = """
 |Rum (10ml a 30ml)                                               |
 |Gelo (20ml)                                                     |
 |________________________________________________________________|
-|          Sera cobrado R$ 30,00 caso seja feita                 |
-|          uma mistura fora do padrao especificado               |
+|          Será cobrado R$ 30,00 caso seja feita                 |
+|          uma mistura fora do padrão especificado               |
 |                                                                |
 |                                                                |
 |________________________________________________________________|
@@ -37,88 +37,83 @@ apresent = """
 
 """
 
-#funcoes para calcular pertinencia
+#funções para calcular pertinência
 def pertinencia_coca_fraco(qtd):
-    if qtd < 56 or qtd > 60:
+    if qtd <= 56 or qtd > 60:
         return 0
     elif 58 <= qtd <=60:
         return 1
-    elif 56 <= qtd <= 58:
+    elif 56 < qtd < 58:
         return (qtd-56)/(58-56)
     
-
-
 def pertinencia_coca_suave(qtd):
-    if qtd < 52 or qtd > 58:
+    if qtd <= 52 or qtd >= 58:
         return 0
-
     elif 54 <= qtd <= 56:
         return 1
-
-    elif 56 <= qtd <= 58:
+    elif 56 < qtd < 58:
         return (58-qtd)/(58-56)
-
-    elif 52 <= qtd <= 54:
+    elif 52 < qtd < 54:
         return (qtd-52)/(54-52)
 
 def pertinencia_coca_forte(qtd):
-    if qtd < 50 or qtd > 54:
+    if qtd < 50 or qtd >= 54:
         return 0
-    elif 50 <= qtd < 52:
+    elif 50 <= qtd <= 52:
         return 1
-    elif 52 <= qtd <= 54:
+    elif 52 < qtd < 54:
         return (54-qtd)/(54-52)
 
 def pertinencia_pepsi_fraco(qtd):
-    if qtd < 66 or qtd > 70:
+    if qtd <= 66 or qtd > 70:
         return 0
     elif 68 <= qtd <= 70:
         return 1
-    elif 66 <= qtd <= 68:
-        return (68-qtd)/(68-66)
+    elif 66 < qtd < 68:
+        return (qtd-66)/(68-66)
 
 def pertinencia_pepsi_suave(qtd):
-    if qtd < 62 or qtd > 68:
+    if qtd <= 62 or qtd >= 68:
         return 0
     elif 64 <= qtd <= 66:
         return 1
-    elif 62 <= qtd <= 64:
+    elif 62 < qtd < 64:
         return (qtd-62)/(64-62)
-    elif 66 <= qtd <= 68:
+    elif 66 < qtd < 68:
         return (68-qtd)/(68-66)
 
 def pertinencia_pepsi_forte(qtd):
-    if qtd < 60 or qtd > 64:
+    if qtd < 60 or qtd >= 64:
         return 0
     elif 60 <= qtd <= 62:
         return 1
-    elif 62 <= qtd <= 64:
+    elif 62 < qtd < 64:
         return (64-qtd)/(64-62)
 
 def pertinencia_rum_fraco(qtd):
-    if qtd < 10 or qtd > 27:
+    if qtd < 10 or qtd >= 20:
         return 0
     elif 10 <= qtd <= 15:
         return 1
-    elif 15 <= qtd <= 20:
+    elif 15 < qtd < 20:
         return (20-qtd)/(20-15)
 
 def pertinencia_rum_suave(qtd):
-    if qtd < 15 or qtd > 27:
+    if qtd <= 15 or qtd >= 27:
         return 0
     elif 20 <= qtd <= 25:
         return 1
-    elif 15 <= qtd <= 20:
+    elif 15 < qtd < 20:
         return (qtd-15)/(20-15)
-    elif 25 <= qtd <= 27:
+    elif 25 < qtd < 27:
         return (27-qtd)/(27-25)
 
 def pertinencia_rum_forte(qtd):
-    if qtd < 23 or qtd > 30:
+    if qtd <= 23 or qtd > 30:
         return 0
     elif 28 <= qtd <= 30:
         return 1
-    elif 23 <= qtd <= 28:
+    elif 23 < qtd < 28:
         return (qtd-23)/(28-23)
 
 def pertinencia_gelo(qtd):
@@ -136,7 +131,7 @@ def defuzzy(lst_x,lst_y,lst_z):
 #menu
 print(apresent)
 
-# lista de opcao dos refrigerantes
+# lista de opção dos refrigerantes
 refri_lst = ['Coca-Cola','Pepsi-Cola']
 
 op_refri = 0
@@ -163,7 +158,7 @@ while gelo < 0 or gelo > 100:
 while rum < 0 or rum > 100:
     rum = float(input(f'quantos ml de rum vai ter no drink?(entre 0 e 100ml)\n'))
 
-#armazenando pertinencias de rum e gelo
+#armazenando pertinências de rum e gelo
 perti_rum_forte = pertinencia_rum_forte(rum)
 perti_rum_suave = pertinencia_rum_suave(rum)
 perti_rum_fraco = pertinencia_rum_fraco(rum)
@@ -171,7 +166,7 @@ perti_gelo = pertinencia_gelo(gelo)
 
 
 
-# logica de defuzzyficar caso for coca-cola
+# lógica de defuzzyficar caso for coca-cola
 if op_refri == 1:
     
     perti_cola_forte = pertinencia_coca_forte(cola)
@@ -196,7 +191,7 @@ if op_refri == 1:
     if not any(perti_cola_fraco,perti_cola_suave,perti_cola_forte):
         falta_cola = True
 
-# logica de defuzzyficar caso for pepsi
+# lógica de defuzzyficar caso for pepsi
 else:
     
     perti_cola_forte = pertinencia_pepsi_forte(cola)
@@ -260,18 +255,18 @@ Defuzzy Forte {defuzzy_forte}
 )
 
 if any([falta_cola,falta_gelo,falta_rum]):
-    print("O Drink feito nao e o Cuba Libre por que\n")
+    print("O Drink feito não é o Cuba Libre por que\n")
     
     if falta_cola:
-        print("Refrigerante do tipo cola nao se enquadrou como fraco, suave ou forte\n")
+        print("Refrigerante do tipo cola não se enquadrou como fraco, suave ou forte\n")
         
     if falta_rum:
-        print("Rum nao se enquadrou como fraco, suave ou forte\n")
+        print("Rum não se enquadrou como fraco, suave ou forte\n")
         
     if falta_gelo:
-        print("Nao tem gelo no drink\n")
+        print("Não tem gelo no drink\n")
     
-    print("portanto o valor cobrado sera de R$ 30,00")
+    print("portanto o valor cobrado será de R$ 30,00")
     
 else:
     valorMaximo = max([defuzzy_forte,defuzzy_fraco,defuzzy_suave])
@@ -284,9 +279,3 @@ else:
     
     if valorMaximo == defuzzy_forte:
         print("O paladar determinante é forte, deverá ser cobrado R$ 25,00")
-    
-    
-
-
-
-

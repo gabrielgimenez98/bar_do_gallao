@@ -137,7 +137,7 @@ refri_lst = ['Coca-Cola','Pepsi-Cola']
 op_refri = 0
 falta_cola = falta_rum = falta_gelo = False
 
-while op_refri != 1 or op_refri != 2:
+while op_refri != 1 and op_refri != 2:
     op_refri = int(input("""
     Qual refrigerante vamos usar para fazer o drink?
 
@@ -166,58 +166,45 @@ perti_gelo = pertinencia_gelo(gelo)
 
 
 
-# lógica de defuzzyficar caso for coca-cola
+#  caso for coca-cola
 if op_refri == 1:
     
     perti_cola_forte = pertinencia_coca_forte(cola)
     perti_cola_suave = pertinencia_coca_suave(cola)
     perti_cola_fraco = pertinencia_coca_fraco(cola)
-
-    defuzzy_suave = defuzzy([
-    perti_cola_forte,perti_rum_fraco,perti_gelo],
-    [perti_cola_suave,perti_rum_suave,perti_gelo],
-    [perti_cola_fraco,perti_rum_forte,perti_gelo])
-
-    defuzzy_forte = defuzzy([
-    perti_cola_forte,perti_rum_suave,perti_gelo],
-    [perti_cola_forte,perti_rum_forte,perti_gelo],
-    [perti_cola_suave,perti_rum_forte,perti_gelo])
-
-    defuzzy_fraco = defuzzy([
-    perti_cola_fraco,perti_rum_fraco,perti_gelo],
-    [perti_cola_fraco,perti_rum_suave,perti_gelo],
-    [perti_cola_suave,perti_rum_fraco,perti_gelo])
     
-    if not any(perti_cola_fraco,perti_cola_suave,perti_cola_forte):
-        falta_cola = True
 
-# lógica de defuzzyficar caso for pepsi
+# caso for pepsi
 else:
     
     perti_cola_forte = pertinencia_pepsi_forte(cola)
     perti_cola_suave = pertinencia_pepsi_suave(cola)
     perti_cola_fraco = pertinencia_pepsi_fraco(cola)
     
-    defuzzy_suave = defuzzy([
-    perti_cola_forte,perti_rum_fraco,perti_gelo],
-    [perti_cola_suave,perti_rum_suave,perti_gelo],
-    [perti_cola_fraco,perti_rum_forte,perti_gelo])
 
-    defuzzy_forte = defuzzy([
-    perti_cola_forte,perti_rum_suave,perti_gelo],
-    [perti_cola_forte,perti_rum_forte,perti_gelo],
-    [perti_cola_suave,perti_rum_forte,perti_gelo])
+#lógica de defuzzyficar
+defuzzy_suave = defuzzy([
+perti_cola_forte,perti_rum_fraco,perti_gelo],
+[perti_cola_suave,perti_rum_suave,perti_gelo],
+[perti_cola_fraco,perti_rum_forte,perti_gelo])
 
-    defuzzy_fraco = defuzzy([
-    perti_cola_fraco,perti_rum_fraco,perti_gelo],
-    [perti_cola_fraco,perti_rum_suave,perti_gelo],
-    [perti_cola_suave,perti_rum_fraco,perti_gelo])
+defuzzy_forte = defuzzy([
+perti_cola_forte,perti_rum_suave,perti_gelo],
+[perti_cola_forte,perti_rum_forte,perti_gelo],
+[perti_cola_suave,perti_rum_forte,perti_gelo])
+
+defuzzy_fraco = defuzzy([
+perti_cola_fraco,perti_rum_fraco,perti_gelo],
+[perti_cola_fraco,perti_rum_suave,perti_gelo],
+[perti_cola_suave,perti_rum_fraco,perti_gelo])
+
+#verificando se falta alguma coisa
     
-    if not any(perti_cola_fraco,perti_cola_suave,perti_cola_forte):
-        falta_cola = True
+if not any([perti_cola_fraco,perti_cola_suave,perti_cola_forte]):
+    falta_cola = True
         
 
-if not any(perti_rum_fraco, perti_rum_suave, perti_rum_forte):
+if not any([perti_rum_fraco, perti_rum_suave, perti_rum_forte]):
     falta_rum = True
     
 
@@ -264,7 +251,7 @@ if any([falta_cola,falta_gelo,falta_rum]):
         print("Rum não se enquadrou como fraco, suave ou forte\n")
         
     if falta_gelo:
-        print("Não tem gelo no drink\n")
+        print("Não tem 20ml de gelo no drink\n")
     
     print("portanto o valor cobrado será de R$ 30,00")
     
